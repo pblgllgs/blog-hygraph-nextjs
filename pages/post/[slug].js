@@ -1,5 +1,6 @@
 import React from 'react';
 import { getPostDetails, getPosts } from '../../services';
+import { useRouter } from 'next/router';
 import {
   Author,
   CommentsForm,
@@ -7,9 +8,14 @@ import {
   PostWidget,
   PostDetails,
   Categories,
+  Loader
 } from '../../components';
 
 const PostPage = ({ post }) => {
+  const router =  useRouter();
+  if(router.isFallback){
+    return <Loader/>
+  }
   return (
     <div className="container mx-auto px-10 mb-8">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -44,7 +50,7 @@ export const getStaticPaths = async () => {
   });
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 };
 

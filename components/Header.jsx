@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { getCategories } from '../services';
+import { getCategoriesHeader } from '../services';
 
 
 const Header = () => {
@@ -8,7 +8,7 @@ const Header = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    getCategories().then((result) => setCategories(result));
+    getCategoriesHeader().then((result) => setCategories(result));
   }, []);
 
   return (
